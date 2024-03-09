@@ -1,5 +1,6 @@
 import { RouterChangeByServerResponse } from './../../../node_modules/next/dist/client/components/router-reducer/router-reducer-types.d';
 import Stripe from "stripe";
+import { NextResponse } from 'next/server';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -23,8 +24,12 @@ export async function POST(request: Request, response:Response) {
         }
       ],
       mode: "payment",
-      success_url: 'http://localhost:3000/book/checkout-success?session_id={CHECKOUT_SESSION_ID}',
+      success_url: `http://localhost:3000/book/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "http://localhost:3000"
     })
-  } catch{}
+
+    return NextResponse.json({ checkout_url: session.url })
+  } catch(err: any) {
+    return NextResponse.json(err.message)
+  }
 }
