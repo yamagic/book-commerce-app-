@@ -16,7 +16,6 @@ export default async function Home() {
   if(user) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`,
-      { cache: "no-store"}
     )
     const purchasesData = await response.json()
 
