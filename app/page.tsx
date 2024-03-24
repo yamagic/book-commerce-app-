@@ -1,4 +1,3 @@
-// "use client";
 import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
