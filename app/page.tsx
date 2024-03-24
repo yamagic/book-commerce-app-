@@ -31,7 +31,7 @@ export default async function Home() {
           Book Commerce
         </h2>
         {contents.map((book:BookType) => (
-          <Book key={book.id} book={book} isPurchased={purchaseBookIds.includes(book.id)}/>
+          <Book key={book.id} book={book} isPurchased={purchaseBookIds?.includes(book.id)}/>
         ))}
       </main>
     </>
